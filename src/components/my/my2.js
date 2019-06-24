@@ -1,17 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import {methods} from './my'
 
 
 import './my.css';
+console.log("methods",methods)
 
-const My = (props) => {
+const My2 = (props) => {
 
  
   let {number,addNumber} = props
   console.log("component : ", number)
   return (
     <div className="shopping-cart-table">
-      <button onClick={e=>addNumber(e)}>add number</button>
+      <button onClick={e=>addNumber(e)}>add number 2</button>
       {number.cnt}
       {
         number.array.map( (e,i) =>(
@@ -29,21 +31,5 @@ const mapStateToProps = (state) => {
   };
 };
 
-let mapDispatchToProps = {
-  
-  addNumber:(e)=>({dispatch,state})=>{
-      
-    let { number } = state
 
-    number.cnt++
-    number.array.push(5)
-
-    return state
-  }
-
-};
-export let methods = {
-  ...mapDispatchToProps
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(My);
+export default connect(mapStateToProps, methods)(My2);

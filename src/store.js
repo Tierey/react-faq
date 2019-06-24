@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
-
+import thunk from "./utils/thunk"
 import reducer from './reducers';
 
 // next == dispatch
@@ -29,21 +29,11 @@ const stringMiddleware = () => (next) => (action) => {
 };
 
 
-function createThunkMiddleware(extraArgument) {
-  return ({ dispatch, getState }) => next => action => {
-    if (typeof action === 'function') {
-      return action({dispatch, state:getState(), extraArgument});
-    }
 
-    return next(action);
-  };
-}
-
-const thunk = createThunkMiddleware();
-thunk.withExtraArgument = createThunkMiddleware;
 
 const store = createStore(reducer, applyMiddleware( 
-  thunk, 
+  //thunkMiddleware, 
+  thunk,
   stringMiddleware, 
   logMiddleware 
 ));

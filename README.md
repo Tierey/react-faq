@@ -5,8 +5,8 @@
 2. go to component
     create mapDispatchToProps
 
-3. go to redusr and made logic
+3. go to reduser and made logic
 
 
 flow 
-    component call action by payload => reducer take action with payload and make logic by state
+    component call action witch payload => reducer take action with payload and make logic by state
