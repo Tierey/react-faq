@@ -1,17 +1,17 @@
 import { createStore, applyMiddleware } from 'redux';
-import thunkMiddleware from 'redux-thunk';
-import thunk from "./utils/thunk"
-import reducer from './reducers';
+//import thunkMiddleware from 'redux-thunk';
+import thunk from "../utils/thunk"
+import reducer from '../reducers';
 
 // next == dispatch
 const logMiddleware = ({ getState, dispatch }) => (next) => (action) => {
-  console.log(action)
-  //console.log(action.type, getState());
+  console.log("log : ",action)
+  
   return next(action);
 };
 
 const stringMiddleware = () => (next) => (action) => {
-  console.log(action)
+ 
   if (typeof action === 'string') {
     return next({
       type: action

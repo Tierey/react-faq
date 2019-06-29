@@ -1,35 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {methods} from './my'
-
+import numbers from '../../store/modules/number'
 
 import './my.css';
-console.log("methods",methods)
 
-const My2 = (props) => {
+export default connect(state=>state, numbers.methods)(
 
- 
-  let {number,addNumber} = props
-  console.log("component : ", number)
-  return (
-    <div className="shopping-cart-table">
-      <button onClick={e=>addNumber(e)}>add number 2</button>
-      {number.cnt}
-      {
-        number.array.map( (e,i) =>(
-          <p key={i}> {e} </p>
-        ))
-      }
-    </div>
-  );
-};
+  ( { number:{ cnt, array }, addNumber } ) => (
 
-const mapStateToProps = (state) => {
+      <div className="shopping-cart-table">
+        <button onClick={e=>addNumber(e)}>add number</button>
+        {cnt}
+        {
+          array.map( (e,i) =>(
+            <p key={i}> {e} </p>
+          ))
+        }
+      </div>
 
-  return {
-    ...state
-  };
-};
-
-
-export default connect(mapStateToProps, methods)(My2);
+));

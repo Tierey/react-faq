@@ -1,11 +1,17 @@
 import {cloneDeep} from 'lodash'
+
+
 function createThunkMiddleware(extraArgument) {
     return ({ dispatch, getState }) => next => action => {
 
         if (typeof action === 'function') {
 
+            function payloadDispatch(method){
+                return dispatch(method).payload
+            }
+          
             let payload = action({
-                dispatch,
+                dispatch:payloadDispatch,
                 state: cloneDeep(getState()),
                 extraArgument
             });
